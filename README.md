@@ -102,11 +102,11 @@
 ## 구현 기능 목록
 
 ### 입력
-- [ ] 구매 금액을 입력받는 기능
+- [x] 구매 금액을 입력받는 기능
   - [ ] 1000원으로 나누어 떨어지지 않으면 &rarr; `IllegalArgumentException`
-- [ ] 당첨 번호를 입력받는 기능
+- [x] 당첨 번호를 입력받는 기능
   - [ ] 번호가 중복이면 &rarr; `IllegalArgumentException`
-- [ ] 보너스 번호를 입력받는 기능
+- [x] 보너스 번호를 입력받는 기능
   - [ ] 당첨 번호와 중복되면 &rarr; `IllegalArgumentException`
 
 ### 출력
