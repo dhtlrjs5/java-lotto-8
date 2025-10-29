@@ -1,5 +1,8 @@
 package lotto.controller;
 
+import lotto.converter.LottoConverter;
+import lotto.domain.Lotto;
+import lotto.domain.WinningLotto;
 import lotto.view.InputView;
 
 public class LottoController {
@@ -16,13 +19,29 @@ public class LottoController {
             ERROR_PREFIX + "금액이 너무 큽니다.";
 
     private final InputView inputView;
+    private final LottoConverter converter;
 
-    public LottoController(InputView inputView) {
+    public LottoController(InputView inputView, LottoConverter lottoConverter) {
         this.inputView = inputView;
+        this.converter = lottoConverter;
     }
 
     public void run() {
         Long lottoMoney = getLottoMoney();
+        WinningLotto winningLotto = getWinningLotto();
+    }
+
+    private WinningLotto getWinningLotto() {
+        Lotto winningNumber = getWinningNumber();
+        String bonusNumber = inputView.inputBonusNumber();
+
+        return converter.convertToWinningLotto(winningNumber, bonusNumber);
+    }
+
+    private Lotto getWinningNumber() {
+        String numbers = inputView.inputWinningNumber();
+
+        return converter.convertStringToLotto(numbers);
     }
 
     private Long getLottoMoney() {
