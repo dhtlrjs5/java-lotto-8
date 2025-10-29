@@ -14,6 +14,10 @@ public class LottoMoney {
         this.money = money;
     }
 
+    public long getMoney() {
+        return money;
+    }
+
     private void validate(long money) {
 
         if (money % 1000 != 0) {
@@ -21,3 +25,4 @@ public class LottoMoney {
         }
     }
 }
+
