@@ -1,33 +1,26 @@
 package lotto.controller;
 
 import lotto.converter.LottoConverter;
+import lotto.converter.MoneyConverter;
 import lotto.domain.Lotto;
+import lotto.domain.LottoMoney;
 import lotto.domain.WinningLotto;
 import lotto.view.InputView;
 
 public class LottoController {
 
-    private static final String ERROR_PREFIX = "[ERROR] ";
-
-    private static final String INVALID_PURCHASE_AMOUNT_NOT_NUMBER =
-            ERROR_PREFIX + "금액은 숫자(양수)만 입력 가능합니다.";
-
-    private static final String INVALID_PURCHASE_AMOUNT_UNIT =
-            ERROR_PREFIX + "금액은 1,000원 단위로 입력해야 합니다.";
-
-    private static final String INVALID_PURCHASE_AMOUNT_RANGE =
-            ERROR_PREFIX + "금액이 너무 큽니다.";
-
     private final InputView inputView;
-    private final LottoConverter converter;
+    private final LottoConverter lottoConverter;
+    private final MoneyConverter moneyConverter;
 
-    public LottoController(InputView inputView, LottoConverter lottoConverter) {
+    public LottoController(InputView inputView, LottoConverter lottoConverter, MoneyConverter moneyConverter) {
         this.inputView = inputView;
-        this.converter = lottoConverter;
+        this.lottoConverter = lottoConverter;
+        this.moneyConverter = moneyConverter;
     }
 
     public void run() {
-        Long lottoMoney = getLottoMoney();
+        LottoMoney money = getLottoMoney();
         WinningLotto winningLotto = getWinningLotto();
     }
 
@@ -35,52 +28,25 @@ public class LottoController {
         Lotto winningNumber = getWinningNumber();
         String bonusNumber = inputView.inputBonusNumber();
 
-        return converter.convertToWinningLotto(winningNumber, bonusNumber);
+        return lottoConverter.convertToWinningLotto(winningNumber, bonusNumber);
     }
 
     private Lotto getWinningNumber() {
         String numbers = inputView.inputWinningNumber();
 
-        return converter.convertStringToLotto(numbers);
+        return lottoConverter.convertStringToLotto(numbers);
     }
 
-    private Long getLottoMoney() {
+    private LottoMoney getLottoMoney() {
         while (true) {
             String lottoMoney = inputView.inputLottoPrice();
 
             try {
-                return validate(lottoMoney);
+                long money = moneyConverter.convertStringToLong(lottoMoney);
+                return new LottoMoney(money);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
-        }
-    }
-
-    private long validate(String lottoMoney) {
-
-        if (!isNumeric(lottoMoney)) {
-            throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT_NOT_NUMBER);
-        }
-
-        long parsedMoney = parseToLongSafely(lottoMoney);
-
-        if (parsedMoney % 1000 != 0) {
-            throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT_UNIT);
-        }
-
-        return parsedMoney;
-    }
-
-    private boolean isNumeric(String lottoMoney) {
-        return lottoMoney.matches("^[0-9]+$");
-    }
-
-    private long parseToLongSafely(String lottoMoney) {
-
-        try {
-            return Long.parseLong(lottoMoney);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT_RANGE);
         }
     }
 }
