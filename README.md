@@ -104,8 +104,8 @@
 ### 입력
 - [x] 구매 금액을 입력받는 기능
   - [x] 1000원으로 나누어 떨어지지 않으면 &rarr; `IllegalArgumentException`
-- [ ] 당첨 번호를 입력받는 기능
-  - [ ] 번호가 중복이면 &rarr; `IllegalArgumentException`
+- [x] 당첨 번호를 입력받는 기능
+  - [x] 번호가 중복이면 &rarr; `IllegalArgumentException`
 - [ ] 보너스 번호를 입력받는 기능
   - [ ] 당첨 번호와 중복되면 &rarr; `IllegalArgumentException`
 
@@ -137,10 +137,10 @@
 ### 당첨 번호 입력 관련
 - [x] 중복 번호 입력
 - [x] 6개가 아닐때
-- [ ] 숫자가 아닐때
+- [x] 숫자가 아닐때
 - [x] 공백 or null이 포함되어있을때
 - [x] 범위가 맞지 않을때
-- [ ] 구분자가 쉼표가 아닐때
+- [x] 구분자가 쉼표가 아닐때
 
 ### 보너스 번호 입력 관련
 - [ ] 당첨 번호와 중복
