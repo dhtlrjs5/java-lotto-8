@@ -1,5 +1,9 @@
 package lotto.domain;
 
+import lotto.utils.Rank;
+
+import java.util.List;
+
 public class WinningLotto {
 
     private static final int LOTTO_MIN_NUMBER = 1;
@@ -17,6 +21,20 @@ public class WinningLotto {
 
     public int getBonusNumber() {
         return bonusNumber;
+    }
+
+    private Rank match(Lotto purchasedLotto) {
+
+        List<Integer> winningNumbers = lotto.getLotto();
+        List<Integer> purchasedNumbers = purchasedLotto.getLotto();
+
+        long count = purchasedNumbers.stream()
+                .filter(winningNumbers::contains)
+                .count();
+
+        boolean containsBonusNumber = purchasedNumbers.contains(bonusNumber);
+
+        return Rank.getRank(count, containsBonusNumber);
     }
 
     private void validateDuplicateNumber() {
