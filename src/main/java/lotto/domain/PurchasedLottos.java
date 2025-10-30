@@ -14,4 +14,8 @@ public class PurchasedLottos {
     public List<Lotto> getLottos() {
         return Collections.unmodifiableList(lotteries);
     }
+
+    public int size() {
+        return lotteries.size();
+    }
 }
