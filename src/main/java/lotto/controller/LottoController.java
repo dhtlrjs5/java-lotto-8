@@ -37,16 +37,7 @@ public class LottoController {
 
     private WinningLotto getWinningLotto() {
 
-        Lotto winningNumber;
-
-        while (true) {
-            try {
-                winningNumber = getWinningNumber();
-                break;
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
+        Lotto winningNumber = getWinningNumber();
 
         while (true) {
             try {
@@ -59,9 +50,19 @@ public class LottoController {
     }
 
     private Lotto getWinningNumber() {
-        String numbers = inputView.inputWinningNumber();
+        Lotto winningLotto;
 
-        return lottoConverter.convertStringToLotto(numbers);
+        while (true) {
+            try {
+                String numbers = inputView.inputWinningNumber();
+                winningLotto = lottoConverter.convertStringToLotto(numbers);
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        return winningLotto;
     }
 
     private LottoMoney getLottoMoney() {
