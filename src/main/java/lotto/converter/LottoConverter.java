@@ -22,7 +22,11 @@ public class LottoConverter {
         List<Integer> numbers = new ArrayList<>();
 
         for (String num : winningNumber.split(DELIMITER)) {
-            numbers.add(Integer.parseInt(num));
+            try {
+                numbers.add(Integer.parseInt(num));
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException(ERROR_PREFIX + "로또 번호는 유효한 숫자여야 합니다.");
+            }
         }
 
         return new Lotto(numbers);
@@ -40,4 +44,5 @@ public class LottoConverter {
 
         return new WinningLotto(lotto, bonusNumber);
     }
+
 }

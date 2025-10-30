@@ -11,6 +11,10 @@ public class WinningLotto {
         validateDuplicateNumber();
     }
 
+    public int getBonusNumber() {
+        return bonusNumber;
+    }
+
     private void validateDuplicateNumber() {
 
         if (lotto.contains(bonusNumber)) {
