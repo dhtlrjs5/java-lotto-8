@@ -2,10 +2,8 @@ package lotto.controller;
 
 import lotto.converter.LottoConverter;
 import lotto.converter.MoneyConverter;
-import lotto.domain.Lotto;
-import lotto.domain.LottoMoney;
-import lotto.domain.PurchasedLottos;
-import lotto.domain.WinningLotto;
+import lotto.domain.*;
+import lotto.service.LottoResultService;
 import lotto.service.LottoService;
 import lotto.view.InputView;
 import lotto.view.OutputView;
@@ -15,13 +13,22 @@ public class LottoController {
     private final InputView inputView;
     private final OutputView outputView;
     private final LottoService lottoService;
+    private final LottoResultService lottoResultService;
     private final LottoConverter lottoConverter;
     private final MoneyConverter moneyConverter;
 
-    public LottoController(InputView inputView, OutputView outputView, LottoService lottoService, LottoConverter lottoConverter, MoneyConverter moneyConverter) {
+    public LottoController(
+            InputView inputView,
+            OutputView outputView,
+            LottoService lottoService,
+            LottoResultService lottoResultService,
+            LottoConverter lottoConverter,
+            MoneyConverter moneyConverter
+    ) {
         this.inputView = inputView;
         this.outputView = outputView;
         this.lottoService = lottoService;
+        this.lottoResultService = lottoResultService;
         this.lottoConverter = lottoConverter;
         this.moneyConverter = moneyConverter;
     }
@@ -33,6 +40,8 @@ public class LottoController {
         outputView.printPurchasedLottos(purchasedLottos);
 
         WinningLotto winningLotto = getWinningLotto();
+
+        LottoResult result = lottoResultService.calculateStatistics(purchasedLottos, winningLotto, money);
     }
 
     private WinningLotto getWinningLotto() {

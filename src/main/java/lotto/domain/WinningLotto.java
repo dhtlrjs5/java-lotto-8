@@ -23,7 +23,7 @@ public class WinningLotto {
         return bonusNumber;
     }
 
-    private Rank match(Lotto purchasedLotto) {
+    public Rank match(Lotto purchasedLotto) {
 
         List<Integer> winningNumbers = lotto.getLotto();
         List<Integer> purchasedNumbers = purchasedLotto.getLotto();
