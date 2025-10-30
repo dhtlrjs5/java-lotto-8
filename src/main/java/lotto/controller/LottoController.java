@@ -36,10 +36,26 @@ public class LottoController {
     }
 
     private WinningLotto getWinningLotto() {
-        Lotto winningNumber = getWinningNumber();
-        String bonusNumber = inputView.inputBonusNumber();
 
-        return lottoConverter.convertToWinningLotto(winningNumber, bonusNumber);
+        Lotto winningNumber;
+
+        while (true) {
+            try {
+                winningNumber = getWinningNumber();
+                break;
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
+
+        while (true) {
+            try {
+                String bonusNumber = inputView.inputBonusNumber();
+                return lottoConverter.convertToWinningLotto(winningNumber, bonusNumber);
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        }
     }
 
     private Lotto getWinningNumber() {
