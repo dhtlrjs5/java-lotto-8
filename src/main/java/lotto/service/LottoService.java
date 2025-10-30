@@ -1,6 +1,7 @@
 package lotto.service;
 
 import lotto.domain.Lotto;
+import lotto.domain.LottoMoney;
 import lotto.domain.PurchasedLottos;
 
 import java.util.ArrayList;
@@ -11,9 +12,10 @@ import static lotto.domain.LottoGenerator.generateLotto;
 
 public class LottoService {
 
-    public PurchasedLottos buyLottos(int money) {
+    public PurchasedLottos buyLottos(LottoMoney money) {
 
-        int count = money / 1000;
+        int count = calculateCount(money);
+
         List<Lotto> lottos = new ArrayList<>();
 
         for (int i = 0; i < count; i++) {
@@ -21,5 +23,10 @@ public class LottoService {
         }
 
         return new PurchasedLottos(lottos);
+    }
+
+    private int calculateCount(LottoMoney money) {
+
+        return (int) (money.getMoney() / 1000);
     }
 }

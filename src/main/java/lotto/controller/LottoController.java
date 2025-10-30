@@ -4,23 +4,28 @@ import lotto.converter.LottoConverter;
 import lotto.converter.MoneyConverter;
 import lotto.domain.Lotto;
 import lotto.domain.LottoMoney;
+import lotto.domain.PurchasedLottos;
 import lotto.domain.WinningLotto;
+import lotto.service.LottoService;
 import lotto.view.InputView;
 
 public class LottoController {
 
     private final InputView inputView;
+    private final LottoService lottoService;
     private final LottoConverter lottoConverter;
     private final MoneyConverter moneyConverter;
 
-    public LottoController(InputView inputView, LottoConverter lottoConverter, MoneyConverter moneyConverter) {
+    public LottoController(InputView inputView, LottoService lottoService, LottoConverter lottoConverter, MoneyConverter moneyConverter) {
         this.inputView = inputView;
+        this.lottoService = lottoService;
         this.lottoConverter = lottoConverter;
         this.moneyConverter = moneyConverter;
     }
 
     public void run() {
         LottoMoney money = getLottoMoney();
+        PurchasedLottos purchasedLottos = lottoService.buyLottos(money);
         WinningLotto winningLotto = getWinningLotto();
     }
 
