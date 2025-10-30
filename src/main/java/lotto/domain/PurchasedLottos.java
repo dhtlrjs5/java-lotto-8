@@ -3,11 +3,11 @@ package lotto.domain;
 import java.util.Collections;
 import java.util.List;
 
-public class PurchasedLotteries {
+public class PurchasedLottos {
 
     private final List<Lotto> lotteries;
 
-    public PurchasedLotteries(List<Lotto> lotteries) {
+    public PurchasedLottos(List<Lotto> lotteries) {
         this.lotteries = lotteries;
     }
 
