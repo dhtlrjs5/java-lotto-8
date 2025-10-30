@@ -9,6 +9,7 @@ public class LottoGenerator {
     public Lotto generateLotto() {
 
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+        numbers.sort(Integer::compareTo);
 
         return new Lotto(numbers);
     }
