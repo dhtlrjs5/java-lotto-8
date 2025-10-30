@@ -1,16 +1,20 @@
 package lotto.service;
 
 import lotto.domain.Lotto;
+import lotto.domain.LottoGenerator;
 import lotto.domain.LottoMoney;
 import lotto.domain.PurchasedLottos;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static lotto.domain.LottoGenerator.generateLotto;
-
-
 public class LottoService {
+
+    private final LottoGenerator generator;
+
+    public LottoService(LottoGenerator generator) {
+        this.generator = generator;
+    }
 
     public PurchasedLottos buyLottos(LottoMoney money) {
 
@@ -19,7 +23,7 @@ public class LottoService {
         List<Lotto> lottos = new ArrayList<>();
 
         for (int i = 0; i < count; i++) {
-            lottos.add(generateLotto());
+            lottos.add(generator.generateLotto());
         }
 
         return new PurchasedLottos(lottos);

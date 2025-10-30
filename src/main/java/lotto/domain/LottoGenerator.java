@@ -6,7 +6,7 @@ import java.util.List;
 
 public class LottoGenerator {
 
-    public static Lotto generateLotto() {
+    public Lotto generateLotto() {
 
         List<Integer> numbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
 

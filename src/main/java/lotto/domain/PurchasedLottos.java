@@ -11,7 +11,7 @@ public class PurchasedLottos {
         this.lotteries = lotteries;
     }
 
-    public List<Lotto> getLotteries() {
+    public List<Lotto> getLottos() {
         return Collections.unmodifiableList(lotteries);
     }
 }
