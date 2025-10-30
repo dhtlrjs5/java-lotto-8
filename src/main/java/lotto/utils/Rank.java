@@ -1,6 +1,7 @@
 package lotto.utils;
 
 import java.util.Arrays;
+import java.util.List;
 
 public enum Rank {
 
@@ -21,6 +22,8 @@ public enum Rank {
         this.prizeAmount = prizeAmount;
     }
 
+    public static final List<Rank> OUTPUT_ORDER = List.of(FIFTH, FOURTH, THIRD, SECOND, FIRST);
+
     public static Rank getRank(long count, boolean matchBonus) {
 
         if (count < 3) {
@@ -35,5 +38,21 @@ public enum Rank {
                 .filter(rank -> rank.count == count)
                 .findFirst()
                 .orElse(MISS);
+    }
+
+    public static List<Rank> getOutputOrder() {
+        return OUTPUT_ORDER;
+    }
+
+    public long getCount() {
+        return count;
+    }
+
+    public boolean isMatchBonus() {
+        return matchBonus;
+    }
+
+    public long getPrizeAmount() {
+        return prizeAmount;
     }
 }
