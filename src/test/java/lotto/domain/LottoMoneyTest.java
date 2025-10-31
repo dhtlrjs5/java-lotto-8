@@ -21,7 +21,7 @@ class LottoMoneyTest {
     }
 
     @ParameterizedTest
-    @ValueSource(longs = {1, 10, 100, 999, 1001, 1500, 51601, 89498100})
+    @ValueSource(longs = {1, 10, 100, 999, 1001, 1500, 51601, 89498100, 0, -1, -1000})
     @DisplayName("구입 금액이 1000원 단위가 아닐 경우 IllegalArgumentException 발생")
     void throwExceptionWhenMoneyIsNotInThousand(long invalidMoney) {
         //when, then
