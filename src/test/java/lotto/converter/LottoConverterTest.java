@@ -8,6 +8,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.Arrays;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -61,8 +62,11 @@ class LottoConverterTest {
     @ValueSource(strings = {"a", "1", "1,5", "10000000000", " ", "0", "-1"})
     @DisplayName("보너스 번호의 입력이 잘못되면 IllegalArgumentException 발생")
     void throwExceptionWhenWrongInputBonusNumber(String input) {
+        //given
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+
         //when, then
-        assertThatThrownBy(() -> converter.convertStringToLotto(input))
+        assertThatThrownBy(() -> converter.convertToWinningLotto(lotto, input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]");
     }
