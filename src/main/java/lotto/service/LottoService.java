@@ -18,7 +18,7 @@ public class LottoService {
 
     public PurchasedLottos buyLottos(LottoMoney money) {
 
-        int count = calculateCount(money);
+        int count = money.calculateCount();
 
         List<Lotto> lottos = new ArrayList<>();
 
@@ -27,10 +27,5 @@ public class LottoService {
         }
 
         return new PurchasedLottos(lottos);
-    }
-
-    private int calculateCount(LottoMoney money) {
-
-        return (int) (money.getMoney() / 1000);
     }
 }

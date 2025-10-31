@@ -17,7 +17,7 @@ class LottoMoneyTest {
 
         //then
         assertThat(money).isNotNull();
-        assertThat(money.getMoney()).isEqualTo(validMoney);
+        assertThat(money.calculateCount()).isEqualTo(validMoney / 1000);
     }
 
     @ParameterizedTest

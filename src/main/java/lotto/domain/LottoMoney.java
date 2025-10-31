@@ -14,8 +14,15 @@ public class LottoMoney {
         this.money = money;
     }
 
-    public long getMoney() {
-        return money;
+    public int calculateCount() {
+        return (int) (money / 1000);
+    }
+
+    public double calculateRateOfReturn(long totalPrize) {
+
+        double rateOfReturn = ((double) totalPrize / money) * 100.0;
+
+        return Math.round(rateOfReturn * 10.0) / 10.0;
     }
 
     private void validate(long money) {
