@@ -26,7 +26,7 @@ class WinningLottoTest {
         WinningLotto winningLotto = new WinningLotto(lotto, bonusNumber);
 
         //then
-        assertThat(winningLotto.getBonusNumber()).isEqualTo(bonusNumber);
+        assertThat(winningLotto).isNotNull();
     }
 
     @Test

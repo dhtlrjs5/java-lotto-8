@@ -55,7 +55,6 @@ class LottoConverterTest {
 
         //then
         assertThat(winningLotto).isNotNull();
-        assertThat(winningLotto.getBonusNumber()).isEqualTo(Integer.parseInt(bonusNumber));
     }
 
     @ParameterizedTest

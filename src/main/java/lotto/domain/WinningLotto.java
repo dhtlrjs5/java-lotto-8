@@ -25,10 +25,6 @@ public class WinningLotto {
         validateOutOfRangeValue();
     }
 
-    public int getBonusNumber() {
-        return bonusNumber;
-    }
-
     public Rank match(Lotto purchasedLotto) {
 
         List<Integer> winningNumbers = lotto.getLotto();
