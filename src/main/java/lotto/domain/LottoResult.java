@@ -6,6 +6,7 @@ import java.util.Map;
 
 public class LottoResult {
 
+    //value: 당첨된 개수
     private final Map<Rank, Integer> result;
     private final double rateOfReturn;
 
