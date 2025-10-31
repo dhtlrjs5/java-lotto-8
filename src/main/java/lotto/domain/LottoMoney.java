@@ -4,7 +4,7 @@ public class LottoMoney {
 
     private static final String ERROR_PREFIX = "[ERROR] ";
 
-    private static final String INVALID_PURCHASE_AMOUNT_UNIT =
+    private static final String ERROR_INVALID_PURCHASE_AMOUNT_UNIT =
             ERROR_PREFIX + "금액은 1,000원 단위로 입력해야 합니다.";
 
     private final long money;
@@ -21,7 +21,7 @@ public class LottoMoney {
     private void validate(long money) {
 
         if (money % 1000 != 0) {
-            throw new IllegalArgumentException(INVALID_PURCHASE_AMOUNT_UNIT);
+            throw new IllegalArgumentException(ERROR_INVALID_PURCHASE_AMOUNT_UNIT);
         }
     }
 }

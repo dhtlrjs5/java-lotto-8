@@ -4,14 +4,19 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-/**
- * Lotto에 numbers 이외의 필드(인스턴스 변수)를 추가할 수 없다.
- * numbers의 접근 제어자인 private은 변경할 수 없다.
- */
 public class Lotto {
 
     private static final int LOTTO_MIN_NUMBER = 1;
     private static final int LOTTO_MAX_NUMBER = 45;
+    private static final int LOTTO_NUMBER_SIZE = 6;
+
+    private static final String ERROR_PREFIX = "[ERROR] ";
+    private static final String ERROR_INVALID_SIZE =
+            ERROR_PREFIX + "로또 번호는 " + LOTTO_NUMBER_SIZE + "개여야 합니다.";
+    private static final String ERROR_DUPLICATE = ERROR_PREFIX + "로또 당첨번호에 중복이 있으면 안됩니다.";
+    private static final String ERROR_NOT_NUMBER = ERROR_PREFIX + "로또 당첨번호는 숫자여야 합니다.";
+    private static final String ERROR_OUT_OF_RANGE =
+            ERROR_PREFIX + "로또 당첨번호는 " + LOTTO_MIN_NUMBER + "~" + LOTTO_MAX_NUMBER + " 입니다.";
 
     private final List<Integer> numbers;
 
@@ -29,20 +34,20 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
-        if (numbers.size() != 6) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+        if (numbers.size() != LOTTO_NUMBER_SIZE) {
+            throw new IllegalArgumentException(ERROR_INVALID_SIZE);
         }
 
         if (hasDuplicate(numbers)) {
-            throw new IllegalArgumentException("[ERROR] 로또 당첨번호에 중복이 있으면 안됩니다.");
+            throw new IllegalArgumentException(ERROR_DUPLICATE);
         }
 
         if (hasNull(numbers)) {
-            throw new IllegalArgumentException("[ERROR] 로또 당첨번호는 숫자여야 합니다.");
+            throw new IllegalArgumentException(ERROR_NOT_NUMBER);
         }
 
         if (hasOutOfRangeValue(numbers)) {
-            throw new IllegalArgumentException("[ERROR] 로또 당첨번호는 1~45 입니다.");
+            throw new IllegalArgumentException(ERROR_OUT_OF_RANGE);
         }
     }
 

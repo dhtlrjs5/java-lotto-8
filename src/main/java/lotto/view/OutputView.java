@@ -12,17 +12,17 @@ import static java.util.stream.Collectors.*;
 
 public class OutputView {
 
-    private static final int PRIZE_AMOUNT_FIRST = 2_000_000_000;
-    private static final int PRIZE_AMOUNT_SECOND = 30_000_000;
-    private static final int PRIZE_AMOUNT_THIRD = 1_500_000;
-    private static final int PRIZE_AMOUNT_FOURTH = 50_000;
-    private static final int PRIZE_AMOUNT_FIFTH = 5_000;
-
     private static final String OUTPUT_PURCHASE_COUNT_MESSAGE = "%d개를 구매했습니다.\n";
     private static final String OUTPUT_STATISTICS_MESSAGE = "당첨 통계";
     private static final String OUTPUT_STATISTICS_SEPARATOR = "---";
     private static final String OUTPUT_STATISTICS_RESULT = "%d개 일치 %s - %d개\n";
     private static final String OUTPUT_STATISTICS_RESULT_FOR_SECOND = "%d개 일치, 보너스 볼 일치 %s - %d개\n";
+    private static final String OUTPUT_TOTAL_RATE_OF_RETURN = "총 수익률은 %s%%입니다.";
+
+    private static final String PRIZE_FORMAT_PREFIX = "(";
+    private static final String PRIZE_FORMAT_SUFFIX = "원)";
+    private static final String LOTTO_FORMAT_PREFIX = "[";
+    private static final String LOTTO_FORMAT_SUFFIX = "]";
 
     public void printPurchasedLottos(PurchasedLottos purchasedLottos) {
 
@@ -56,7 +56,7 @@ public class OutputView {
         }
 
         String formattedRateOfReturn = convertRateOfReturnToString(rateOfReturn);
-        System.out.println("총 수익률은 " + formattedRateOfReturn + "%입니다.");
+        System.out.printf(OUTPUT_TOTAL_RATE_OF_RETURN, formattedRateOfReturn);
     }
 
     private String convertRateOfReturnToString(double rateOfReturn) {
@@ -66,12 +66,12 @@ public class OutputView {
     private String convertPrizeToString(long prize) {
 
         StringBuilder sb = new StringBuilder();
-        sb.append("(");
+        sb.append(PRIZE_FORMAT_PREFIX);
 
         String formatPrize = String.format("%,d", prize);
         sb.append(formatPrize);
 
-        sb.append("원)");
+        sb.append(PRIZE_FORMAT_SUFFIX);
         return sb.toString();
     }
 
@@ -80,14 +80,14 @@ public class OutputView {
         List<Integer> numbers = lotto.getLotto();
 
         StringBuilder sb = new StringBuilder();
-        sb.append("[");
+        sb.append(LOTTO_FORMAT_PREFIX);
 
         String numbersString = numbers.stream()
                 .map(Object::toString)
                 .collect(joining(", "));
 
         sb.append(numbersString);
-        sb.append("]");
+        sb.append(LOTTO_FORMAT_SUFFIX);
 
         return sb.toString();
     }

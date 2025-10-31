@@ -9,6 +9,12 @@ public class WinningLotto {
     private static final int LOTTO_MIN_NUMBER = 1;
     private static final int LOTTO_MAX_NUMBER = 45;
 
+    private static final String ERROR_PREFIX = "[ERROR] ";
+    private static final String ERROR_DUPLICATE_BONUS =
+            ERROR_PREFIX + "로또 번호와 중복된 보너스 번호입니다.";
+    private static final String ERROR_BONUS_OUT_OF_RANGE =
+            ERROR_PREFIX + "보너스 번호는 " + LOTTO_MIN_NUMBER + "~" + LOTTO_MAX_NUMBER + " 입니다.";
+
     private final Lotto lotto;
     private final int bonusNumber;
 
@@ -40,14 +46,14 @@ public class WinningLotto {
     private void validateDuplicateNumber() {
 
         if (lotto.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호와 중복된 보너스 번호입니다.");
+            throw new IllegalArgumentException(ERROR_DUPLICATE_BONUS);
         }
     }
 
     private void validateOutOfRangeValue() {
 
         if (bonusNumber < LOTTO_MIN_NUMBER || bonusNumber > LOTTO_MAX_NUMBER) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 입니다.");
+            throw new IllegalArgumentException(ERROR_BONUS_OUT_OF_RANGE);
         }
     }
 }
