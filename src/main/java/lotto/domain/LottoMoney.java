@@ -20,7 +20,7 @@ public class LottoMoney {
 
     private void validate(long money) {
 
-        if (money % 1000 != 0) {
+        if (money % 1000 != 0 || money <= 0) {
             throw new IllegalArgumentException(ERROR_INVALID_PURCHASE_AMOUNT_UNIT);
         }
     }
