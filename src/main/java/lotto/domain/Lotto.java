@@ -25,8 +25,20 @@ public class Lotto {
         this.numbers = numbers;
     }
 
+    /**
+     * 출력용 getter
+     */
     public List<Integer> getLotto() {
         return Collections.unmodifiableList(numbers);
+    }
+
+    public long countMatchingNumbers(Lotto otherLotto) {
+
+        List<Integer> otherNumbers = otherLotto.numbers;
+
+        return otherNumbers.stream()
+                .filter(this.numbers::contains)
+                .count();
     }
 
     public boolean contains(int bonusNumber) {

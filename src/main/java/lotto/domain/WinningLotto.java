@@ -27,14 +27,8 @@ public class WinningLotto {
 
     public Rank match(Lotto purchasedLotto) {
 
-        List<Integer> winningNumbers = lotto.getLotto();
-        List<Integer> purchasedNumbers = purchasedLotto.getLotto();
-
-        long count = purchasedNumbers.stream()
-                .filter(winningNumbers::contains)
-                .count();
-
-        boolean containsBonusNumber = purchasedNumbers.contains(bonusNumber);
+        long count = purchasedLotto.countMatchingNumbers(lotto);
+        boolean containsBonusNumber = purchasedLotto.contains(bonusNumber);
 
         return Rank.getRank(count, containsBonusNumber);
     }
