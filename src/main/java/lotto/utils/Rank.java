@@ -34,6 +34,10 @@ public enum Rank {
             return SECOND;
         }
 
+        if (count == 5) {
+            return THIRD;
+        }
+
         return Arrays.stream(values())
                 .filter(rank -> rank.count == count)
                 .findFirst()
