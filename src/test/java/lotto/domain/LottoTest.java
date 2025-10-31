@@ -62,4 +62,16 @@ class LottoTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR]");
     }
+
+    @Test
+    @DisplayName("로또 번호의 개수가 6개 미만인 경우 IllegalArgumentException 발생")
+    void throwExceptionWhenLessThanSix() {
+        //given
+        List<Integer> numbers = List.of(1, 2, 3, 4, 5);
+
+        //when, then
+        assertThatThrownBy(() -> new Lotto(numbers))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessageContaining("[ERROR]");
+    }
 }
