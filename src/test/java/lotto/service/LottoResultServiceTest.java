@@ -2,7 +2,6 @@ package lotto.service;
 
 import lotto.domain.*;
 import lotto.utils.Rank;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -19,7 +18,7 @@ class LottoResultServiceTest {
             new Lotto(List.of(1, 2, 3, 4, 5, 6)), 7
     );
     private final LottoMoney lottoMoney = new LottoMoney(8000L);
-    
+
     /**
      * 당첨 번호: [1, 2, 3, 4, 5, 6], 보너스 번호: 7
      */
