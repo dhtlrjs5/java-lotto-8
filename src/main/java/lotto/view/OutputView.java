@@ -31,8 +31,8 @@ public class OutputView {
     public void printStatistics(LottoResult result) {
 
         printHeader();
-        printStatistics(result.getResult());
-        printRateOfReturn(result.getRateOfReturn());
+        printStatistics(result.result());
+        printRateOfReturn(result.rateOfReturn());
     }
 
 

@@ -32,7 +32,7 @@ class LottoResultServiceTest {
         LottoResult result = lottoResultService.calculateStatistics(purchasedLottos, winningLotto, lottoMoney);
 
         //then
-        Map<Rank, Integer> statistics = result.getResult();
+        Map<Rank, Integer> statistics = result.result();
 
         assertThat(statistics.getOrDefault(FIRST, 0)).isEqualTo(0);
         assertThat(statistics.get(SECOND)).isEqualTo(1);
@@ -41,7 +41,7 @@ class LottoResultServiceTest {
         assertThat(statistics.get(FIFTH)).isEqualTo(1);
         assertThat(statistics.get(MISS)).isEqualTo(4);
 
-        assertThat(result.getRateOfReturn()).isEqualTo(394437.5);
+        assertThat(result.rateOfReturn()).isEqualTo(394437.5);
     }
 
     /**
