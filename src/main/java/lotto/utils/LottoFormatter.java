@@ -14,7 +14,7 @@ public class LottoFormatter {
     private static final String LOTTO_FORMAT_SUFFIX = "]";
     private static final String DELIMITER = ", ";
     private static final String PRIZE_FORMAT = "%,d";
-    private static final String RATE_OF_RETURN_FORMAT = "%,.1f%%";
+    private static final String RATE_OF_RETURN_FORMAT = "%,.1f";
 
     private LottoFormatter() {
     }
