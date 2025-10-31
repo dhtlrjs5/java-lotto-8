@@ -54,6 +54,61 @@ class ApplicationTest extends NsTest {
         });
     }
 
+    @Test
+    void 예외_발생_시_재입력_테스트() {
+        assertRandomUniqueNumbersInRangeTest(
+                () -> {
+                    run("1100", //잘못된 구매금액 입력
+                            "a1000",
+                            "1,000원",
+                            "1000원",
+                            " ",
+                            "8000", //통과
+                            "1,2,3,4,5,6,7", //잘못된 당첨 번호 입력
+                            " ",
+                            "1, 2, 3, 4, 5, 6",
+                            "1,2,3,4,5",
+                            "123456",
+                            "1:2:3:4:5:6",
+                            "1,2,3,4,5,6", //통과
+                            "6", //잘못된 보너스 번호 입력
+                            "a",
+                            "0",
+                            "46",
+                            "7"); //통과
+
+                    //예상 출력 목록에 에러 메시지가 모두 포함되어야됨.
+                    assertThat(output()).contains(
+                            ERROR_MESSAGE,
+                            ERROR_MESSAGE,
+                            ERROR_MESSAGE,
+                            ERROR_MESSAGE,
+                            ERROR_MESSAGE,
+                            "8개를 구매했습니다.",
+                            ERROR_MESSAGE,
+                            ERROR_MESSAGE,
+                            ERROR_MESSAGE,
+                            ERROR_MESSAGE,
+                            ERROR_MESSAGE,
+                            ERROR_MESSAGE,
+                            ERROR_MESSAGE,
+                            ERROR_MESSAGE,
+                            ERROR_MESSAGE,
+                            ERROR_MESSAGE,
+                            "총 수익률은 62.5%입니다." // 최종 결과 출력 확인
+                    );
+                },
+                List.of(8, 21, 23, 41, 42, 43),
+                List.of(3, 5, 11, 16, 32, 38),
+                List.of(7, 11, 16, 35, 36, 44),
+                List.of(1, 8, 11, 31, 41, 42),
+                List.of(13, 14, 16, 38, 42, 45),
+                List.of(7, 11, 30, 40, 42, 43),
+                List.of(2, 13, 22, 32, 38, 45),
+                List.of(1, 3, 5, 14, 22, 45)
+        );
+    }
+
     @Override
     public void runMain() {
         Application.main(new String[]{});
