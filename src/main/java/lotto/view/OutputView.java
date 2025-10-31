@@ -55,7 +55,12 @@ public class OutputView {
             System.out.printf(OUTPUT_STATISTICS_RESULT, rank.getCount(), money, count);
         }
 
-        System.out.println("총 수익률은 " + rateOfReturn + "%입니다.");
+        String formattedRateOfReturn = convertRateOfReturnToString(rateOfReturn);
+        System.out.println("총 수익률은 " + formattedRateOfReturn + "%입니다.");
+    }
+
+    private String convertRateOfReturnToString(double rateOfReturn) {
+        return String.format("%,.1f", rateOfReturn);
     }
 
     private String convertPrizeToString(long prize) {
