@@ -51,40 +51,51 @@ public class LottoController {
 
         while (true) {
             try {
-                String bonusNumber = inputView.inputBonusNumber();
-                return lottoConverter.convertToWinningLotto(winningNumber, bonusNumber);
+                return tryGetBonusNumber(winningNumber);
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    private WinningLotto tryGetBonusNumber(Lotto winningNumber) {
+
+        String bonusNumber = inputView.inputBonusNumber();
+        return lottoConverter.convertToWinningLotto(winningNumber, bonusNumber);
     }
 
     private Lotto getWinningNumber() {
-        Lotto winningLotto;
 
         while (true) {
             try {
-                String numbers = inputView.inputWinningNumber();
-                winningLotto = lottoConverter.convertStringToLotto(numbers);
-                break;
+                return tryGetWinningNumber();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
+    }
 
-        return winningLotto;
+    private Lotto tryGetWinningNumber() {
+
+        String numbers = inputView.inputWinningNumber();
+        return lottoConverter.convertStringToLotto(numbers);
     }
 
     private LottoMoney getLottoMoney() {
-        while (true) {
-            String lottoMoney = inputView.inputLottoPrice();
 
+        while (true) {
             try {
-                long money = moneyConverter.convertStringToLong(lottoMoney);
-                return new LottoMoney(money);
+                return tryGetLottoMoney();
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
         }
+    }
+
+    private LottoMoney tryGetLottoMoney() {
+
+        String lottoMoney = inputView.inputLottoPrice();
+        long money = moneyConverter.convertStringToLong(lottoMoney);
+        return new LottoMoney(money);
     }
 }
