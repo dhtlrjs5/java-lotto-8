@@ -22,9 +22,7 @@ public class LottoConverter {
 
     public Lotto convertStringToLotto(String winningNumber) {
 
-        if (!winningNumber.matches(REGEX_VALIDATE_FORMAT)) {
-            throw new IllegalArgumentException(ERROR_INVALID_FORMAT);
-        }
+        validate(winningNumber);
 
         List<Integer> numbers = new ArrayList<>();
 
@@ -33,6 +31,20 @@ public class LottoConverter {
         }
 
         return new Lotto(numbers);
+    }
+
+    private static void validate(String winningNumber) {
+        if (!winningNumber.matches(REGEX_VALIDATE_FORMAT)) {
+            throw new IllegalArgumentException(ERROR_INVALID_FORMAT);
+        }
+    }
+
+    private int parseNumberSafely(String num) {
+        try {
+            return Integer.parseInt(num);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ERROR_LOTTO_NOT_VALID_NUMBER);
+        }
     }
 
     public WinningLotto convertToWinningLotto(Lotto lotto, String rawBonusNumber) {
@@ -46,13 +58,5 @@ public class LottoConverter {
         }
 
         return new WinningLotto(lotto, bonusNumber);
-    }
-
-    private int parseNumberSafely(String num) {
-        try {
-            return Integer.parseInt(num);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ERROR_LOTTO_NOT_VALID_NUMBER);
-        }
     }
 }
