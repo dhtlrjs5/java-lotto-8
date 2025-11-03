@@ -29,11 +29,7 @@ public class LottoConverter {
         List<Integer> numbers = new ArrayList<>();
 
         for (String num : winningNumber.split(DELIMITER)) {
-            try {
-                numbers.add(Integer.parseInt(num));
-            } catch (NumberFormatException e) {
-                throw new IllegalArgumentException(ERROR_LOTTO_NOT_VALID_NUMBER);
-            }
+            numbers.add(parseNumberSafely(num));
         }
 
         return new Lotto(numbers);
@@ -52,4 +48,11 @@ public class LottoConverter {
         return new WinningLotto(lotto, bonusNumber);
     }
 
+    private int parseNumberSafely(String num) {
+        try {
+            return Integer.parseInt(num);
+        } catch (NumberFormatException e) {
+            throw new IllegalArgumentException(ERROR_LOTTO_NOT_VALID_NUMBER);
+        }
+    }
 }
